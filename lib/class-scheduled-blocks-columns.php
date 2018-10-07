@@ -4,13 +4,13 @@
  * Scheduled Blocks Columns: Scheduled_Blocks_Columns class
  *
  * @package scheduledblockscolumns
- * @since 0.2.0
+ * @since 0.1.0
  */
 
 /**
  * Handles the columns blocks within Gutenberg.
  *
- * @since 0.2.0
+ * @since 0.1.0
  */
 
 class Scheduled_Blocks_Columns {
@@ -106,7 +106,18 @@ class Scheduled_Blocks_Columns {
 		);
 
 		if ( in_array( $block_details['blockName'], array_values( $columns_names ), true ) ) {
-			$this->remove_after[] = ( isset( $block_details['attrs']['scheduledStart'] ) ) ? array( 'scheduled' => 'start', 'datetime' => $block_details['attrs']['scheduledStart'] ) : array( 'scheduled' => 'end', 'datetime' => $block_details['attrs']['scheduledEnd'] );
+
+			if ( isset( $block_details['attrs']['scheduledStart'] ) ) {
+				$this->remove_after[] = array(
+					'scheduled' => 'start',
+					'datetime'  => $block_details['attrs']['scheduledStart'],
+				);
+			} else {
+				$this->remove_after[] = array(
+					'scheduled' => 'end',
+					'datetime'  => $block_details['attrs']['scheduledEnd'],
+				);
+			}
 		}
 
 		return $block_details;
