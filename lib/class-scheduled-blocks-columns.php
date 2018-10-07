@@ -90,14 +90,6 @@ class Scheduled_Blocks_Columns {
 			return $block_details;
 		}
 
-		$this_block = array(
-			'blockName'   => $block_details['blockName'],
-			'attrs'       => $block_details['attrs'],
-			'innerHTML'   => $block_details['innerHTML'],
-			'innerBlocks' => $block_details['innerBlocks'],
-			'special'     => true,
-		);
-
 		// If this is a columns block, we need to get the starting tag, and strip the </div> so we know
 		// where the column starts.
 		$columns_names = array(
